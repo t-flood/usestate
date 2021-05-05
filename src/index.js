@@ -4,23 +4,20 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-class OneTimeButton extends React.Component {
-  state = {
-    clicked: false,
-  };
-  handleClick = () => {
-    this.props.onClick();
+function OneTimeButton({ onClick }) {
+  const [clicked, setClicked] = React.useState(false);
 
-    this.setState({ clicked: true });
+  const handleClick = () => {
+    onClick();
+
+    setClicked(true);
   };
 
-  render() {
-    return (
-      <button onClick={this.handleClick} disabled={this.state.clicked}>
-        You can only click me once
-      </button>
-    );
-  }
+  return (
+    <button onClick={handleClick} disabled={clicked}>
+      You can only click me once
+    </button>
+  );
 }
 
 ReactDOM.render(
